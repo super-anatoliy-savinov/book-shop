@@ -4,6 +4,9 @@ FROM python:3.10.4-slim-bullseye
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SUPERUSER_USERNAME=Anatoliy
+ENV DJANGO_SUPERUSER_PASSWORD=anatoliysavinov
+ENV DJANGO_SUPERUSER_EMAIL=anatolijsavinov004@gmail.com
 # Set work directory
 WORKDIR /code
 # Install dependencies
@@ -12,4 +15,4 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . .
 # Run migrations and start gunicorn
-CMD python manage.py collectstatic --no-input && python manage.py migrate && gunicorn django_project.wsgi -b 0.0.0.0:8000
+CMD python manage.py collectstatic --no-input && python manage.py migrate && python manage.py createsuperuser --no-input || true && gunicorn django_project.wsgi -b 0.0.0.0:8000
