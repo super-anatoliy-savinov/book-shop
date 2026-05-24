@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . .
 # Run migrations and start gunicorn
-CMD python manage.py migrate && gunicorn django_project.wsgi -b 0.0.0.0:8000
+CMD python manage.py collectstatic --no-input && python manage.py migrate && gunicorn django_project.wsgi -b 0.0.0.0:8000
