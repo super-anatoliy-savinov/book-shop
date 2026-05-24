@@ -12,6 +12,12 @@ services:
       - DJANGO_SECRET_KEY=django-insecure-e*75@1cc&al9qv35v_u_ws@z@&wxuki6ed0v1)26ru-lgbb#hg
       - DJANGO_DEBUG=True
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DJANGO_SECURE_SSL_REDIRECT=False
+      - DJANGO_SECURE_HSTS_SECONDS=0
+      - DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False
+      - DJANGO_SECURE_HSTS_PRELOAD=False
+      - DJANGO_SESSION_COOKIE_SECURE=False
+      - DJANGO_CSRF_COOKIE_SECURE=False
   db:
     image: postgres:15
     volumes:
